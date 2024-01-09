@@ -1,4 +1,4 @@
-// pages/about.js
+
 
 import React from "react";
 
@@ -10,12 +10,15 @@ const About = () => {
 				justifyContent: "centre",
 				alignItems: "centre",
 				height: "100vh",
+				backgroundImage:
+                "url('https://images.onlymyhealth.com/imported/images/2022/September/23_Sep_2022/Tea-vs-Coffee-Which-Is-Better-m.jpg')",
+                marginTop: "-120px",
+                fontSize: "50px",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
 			}}
 		>
-			<h1>
-				GeeksforGeeks is a Computer Science portal
-				for geeks.
-			</h1>
+			
 		</div>
 	);
 };

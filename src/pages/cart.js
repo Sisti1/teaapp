@@ -6,8 +6,14 @@ const Cart = () =>{return(
         justifyContent: "centre",
         alignItems: "centre",
         height: "100vh",
+        backgroundImage:
+                "url('https://assets.rbl.ms/19152954/origin.jpg')",
+                marginTop: "-120px",
+                fontSize: "50px",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
     }}>
-        <h1>This is the basic cart page</h1>
+       
         
     </div>
 );};
