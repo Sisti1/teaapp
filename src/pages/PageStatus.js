@@ -14,7 +14,7 @@ const PageStatus = () => {
       case "/cart":
         console.log("You are at cart page");
         break;
-      case "/Signin":
+      case "/signin":
         console.log("You are at sign-up page");
         break;
       default:
