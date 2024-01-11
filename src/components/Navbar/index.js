@@ -1,41 +1,35 @@
 // components/Navbar/index.js
 
 import React from "react";
-import {
-	Nav,
-	NavLink,
-	Bars,
-	NavMenu,
-	NavBtn,
-	NavBtnLink,
-} from "./NavbarElement";
+import {Link} from 'react-router-dom';
 
 const Navbar = () => {
 	return (
 		<>
-			<Nav>
-				<Bars />
+			<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div className="container-fluid">
+    <a className="navbar-brand" href="/">KailashTea</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">about</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/cart">cart</a>
+        </li>
+        
+      </ul>
+      <button type="button" class="btn btn-dark" href="/signup">Signup</button>
+    </div>
+  </div>
+</nav>
 
-				<NavMenu>
-                <NavLink to="/" >
-						Home
-					</NavLink>
-					<NavLink to="/about" >
-						About
-					</NavLink>
-					{/* Second Nav */}
-					{/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
-				</NavMenu>
-				<NavBtn>
-                <NavLink to="/cart" >
-					Cart
-					</NavLink>
-				<NavBtnLink to="/signin">
-						Sign In
-					</NavBtnLink>
-                
-				</NavBtn>
-			</Nav>
 		</>
 	);
 };
