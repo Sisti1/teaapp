@@ -15,6 +15,7 @@ return (
             fontSize: "50px",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
+			backgroundPosition: "center",
 	}}
 	>
 </div>
