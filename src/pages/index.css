@@ -1,0 +1,14 @@
+
+.div2{
+    height: 50%;
+    width: 50%;
+    padding:30px;
+   
+    
+}
+
+@media (max-width: 768px) {
+    .div1 {
+      height: auto; 
+    }
+  }
