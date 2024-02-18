@@ -7,7 +7,7 @@ const Navbar = () => {
       <div>
         <BootstrapNavbar className="custom-navbar" expand="lg">
           <BootstrapNavbar.Brand as={Link} to="/">
-            KailashTea
+            <strong>KailashTea</strong>
           </BootstrapNavbar.Brand>
           <BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />
           <BootstrapNavbar.Collapse id="basic-navbar-nav">
@@ -15,8 +15,8 @@ const Navbar = () => {
               <Nav.Link as={Link} to="/about">
                 <b>About</b>
               </Nav.Link>
-              <Nav.Link as={Link} to="/cart">
-                <b>Cart</b>
+              <Nav.Link as={Link} to="/teashop">
+                <b>TeaShop</b>
               </Nav.Link>
               <Nav.Link as={Link} to="/contact">
                 <b>Contact Us</b>
@@ -32,9 +32,19 @@ const Navbar = () => {
                   variant="dark"
                   as={Link}
                   to="/signup"
-                  className="justify-content-end"
+                  className="btn-primary-spacing"
                 >
                   Sign Up
+                </Button>
+               </li>
+               <li className="nav-item"> 
+               <Button
+                  variant="dark"
+                  as={Link}
+                  to="/cart"
+                  className=" btn btn-spacing"
+                >
+                  cart
                 </Button>
                </li>
               </ul>

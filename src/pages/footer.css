@@ -1,0 +1,37 @@
+
+.footer {
+    background-color:  rgb(181, 73, 19);
+    color: #100f0f;
+    padding: 50px 0;
+  }
+  
+  .footer h3 {
+    color: #0b0b0b;
+  }
+  
+  .social-icons {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .social-icons li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .social-icons li a {
+    color: #100f0f;
+    font-size: 20px;
+  }
+  
+
+  @media (max-width: 768px) {
+    .footer {
+      padding: 30px 0;
+    }
+  
+    .footer .col-lg-4 {
+      margin-bottom: 30px;
+    }
+  }
+  

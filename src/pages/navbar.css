@@ -1,5 +1,8 @@
 .custom-navbar {
-    background-color: rgb(181, 73, 19) !important;
+    background-color:rgb(181, 73, 19)!important;
     padding-left: 2px;
-    padding-right: 20px;
+    padding-right: 12px;
+  }
+  .btn-spacing {
+    margin-left: 10px; 
   }

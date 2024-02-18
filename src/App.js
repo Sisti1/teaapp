@@ -12,7 +12,9 @@ import Home from "./pages";
 import About from "./pages/about";
 import SignUp from "./pages/signup";
 import Cart from "./pages/cart";
-import PageStatus from "./pages/PageStatus"; 
+import teashop from "./pages/teashop";
+import PageStatus from "./pages/PageStatus";
+import Footer from "./pages/footer"; 
 
 
 function App() {
@@ -28,11 +30,12 @@ function App() {
         
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/teashop" element={<teaShop/>}/>
         <Route path="/cart"  element={<Cart />} />
-        <Route path="/signin" element={<SignUp />}/>
+        <Route path="/signup" element={<SignUp />}/>
          
       </Routes>
-      
+      <Footer />
     </Router>
   );
 }
