@@ -41,6 +41,16 @@ const Navbar = () => {
                <Button
                   variant="dark"
                   as={Link}
+                  to="/login"
+                  className="btn-primary-spacing"
+                >
+                  Login
+                </Button>
+               </li>
+               <li className="nav-item"> 
+               <Button
+                  variant="dark"
+                  as={Link}
                   to="/cart"
                   className=" btn btn-spacing"
                 >
