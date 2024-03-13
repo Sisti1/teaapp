@@ -1,6 +1,7 @@
 import React from "react";
 
-const Cart = () =>{return(
+const Cart = () =>{
+    return(
     <div style={{
         display: "flex",
         justifyContent: "centre",

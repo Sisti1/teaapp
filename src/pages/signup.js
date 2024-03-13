@@ -1,5 +1,6 @@
 
 	import React, { useState } from 'react';
+	import "./sigup.css";
 	const SignUp = () => {
 	  const [formData, setFormData] = useState({
 		firstName: '',
@@ -27,6 +28,7 @@
 		  errors.lastName = 'Last name is required';
 		}
 		if (!formData.email) {
+
 		  errors.email = 'Email is required';
 		} else if (!/\S+@\S+\.\S+/.test(formData.email)) {
 		  errors.email = 'Email is invalid';
@@ -47,8 +49,8 @@
 	
 	  return (
 		<div style={{ maxWidth: '450px', margin: 'auto', padding: '20px' }}>
-			 <div style={{ border: '2px solid rgb(181, 73, 19)', backgroundColor: ' #F8DC88', padding: '20px', marginBottom: '20px'}}>
-		  <h2 style={{textAlign:'center', marginBottom: '20px' }}>Sign Up</h2>
+			 <div style={{ padding: '20px', marginBottom: '20px'}}>
+		  <h2 style={{ marginBottom: '20px' }}>Sign Up</h2>
 		  <form onSubmit={handleSubmit}>
 			<div>
 			  <input
@@ -57,7 +59,8 @@
 				placeholder="First Name"
 				value={formData.firstName}
 				onChange={handleChange}
-				style={{ width: '100%', marginBottom: '20px' }}
+				className="input-field"
+				style={{ width: '100%', marginBottom: '20px',background:'#F8DC88' ,border:'2px solid white',}}
 			  />
 			  {errors.firstName && <p style={{ color: 'red' }}>{errors.firstName}</p>}
 			</div>
@@ -68,7 +71,8 @@
 				placeholder="Last Name"
 				value={formData.lastName}
 				onChange={handleChange}
-				style={{ width: '100%', marginBottom: '20px' }}
+				className="input-field"
+				style={{ width: '100%', marginBottom: '20px',background:'#F8DC88' ,border:'2px solid white' }}
 			  />
 			  {errors.lastName && <p style={{ color: 'red' }}>{errors.lastName}</p>}
 			</div>
@@ -79,7 +83,8 @@
 				placeholder="Email"
 				value={formData.email}
 				onChange={handleChange}
-				style={{ width: '100%', marginBottom: '20px' }}
+				className="input-field"
+				style={{ width: '100%', marginBottom: '20px',background:'#F8DC88' ,border:'2px solid white' }}
 			  />
 			  {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
 			</div>
@@ -90,11 +95,12 @@
 				placeholder="Password"
 				value={formData.password}
 				onChange={handleChange}
-				style={{ width: '100%', marginBottom: '20px' }}
+				className="input-field"
+				style={{ width: '100%', marginBottom: '20px' ,background:'#F8DC88' ,border:'2px solid white'}}
 			  />
 			  {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
 			</div>
-			<button type="submit" style={{ width: '100%', padding: '10px', backgroundColor: ' rgb(181, 73, 19)', color: 'black', border: '2px solid black' }}><b>Sign Up</b></button>
+			<button type="submit" style={{ width: '100%', padding: '10px', backgroundColor: ' rgb(181, 73, 19)', color: 'white', border: '2px solid white' }}><b>Sign Up</b></button>
 		  </form>
 		</div>
 		</div>

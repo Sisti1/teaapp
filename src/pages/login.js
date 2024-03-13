@@ -37,7 +37,7 @@ const Login = () => {
 
   return (
     <div style={{ maxWidth: '450px', margin: 'auto', padding: '20px' ,marginTop: '45px'}}>
-    <div style={{ border: '2px solid rgb(181, 73, 19)', backgroundColor: ' #F8DC88', padding: '50px', marginBottom: '45px'}}>
+    <div style={{ padding: '50px', marginBottom: '45px'}}>
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -47,7 +47,8 @@ const Login = () => {
             placeholder="Email"
             value={formData.email}
             onChange={handleChange}
-            style={{ width: '100%', marginBottom: '10px' }}
+            style={{ width: '100%', marginBottom: '20px' ,background:'#F8DC88' ,border:'2px solid white' ,textAlign:
+            'center'}}
           />
           {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
         </div>
@@ -58,11 +59,12 @@ const Login = () => {
             placeholder="Password"
             value={formData.password}
             onChange={handleChange}
-            style={{ width: '100%', marginBottom: '10px' }}
+            style={{ width: '100%', marginBottom: '20px',background:'#F8DC88' ,border:'2px solid white',textAlign:
+        'center' }}
           />
           {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
         </div>
-        <button type="submit" style={{ width: '100%', padding: '10px', backgroundColor: 'rgb(181, 73, 19)', color: 'black', border: 'none' }}>Login</button>
+        <button type="submit" style={{ width: '100%', padding: '10px', backgroundColor: 'rgb(181, 73, 19)', color: 'white', border: 'none' }}><b>Login</b></button>
       </form>
     </div>
     </div>
