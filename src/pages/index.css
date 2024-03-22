@@ -1,14 +1,48 @@
 
 .div2{
-    height: 50%;
-    width: 60%;
-    padding:14px ;
-    
-    
+    height: 48%;
+    width: 100%;    
+}
+.div1{
+  height: 50%;
+  width: 100%;     
 }
 
 @media (max-width: 768px) {
     .div1 {
       height: auto; 
     }
+  }
+  .slider-image {
+    width: 100%;
+    height: auto;
+    max-height: 650px; /* Adjust the maximum height as needed */
+    object-fit: cover;
+
+    margin: 0 auto; /* Ensures the image maintains its aspect ratio */
+  }
+  /* Adjust the image size based on screen width for tablets */
+@media (max-width: 1024px) {
+  .slider-img {
+    max-width: 80%; /* Decrease image size for tablets */
+  }
+}
+
+/* Adjust the image size based on screen width for mobile phones */
+@media (max-width: 768px) {
+  .slider-img {
+    max-width: 90%; /* Decrease image size for mobile phones */
+  }
+}
+
+/* Adjust the image size based on screen width for smaller mobile phones */
+@media (max-width: 480px) {
+  .slider-img {
+    max-width: 95%; /* Decrease image size for smaller mobile phones */
+  }
+}
+  .carousel-container {
+    width: 100%; 
+    height: 10%;/* Adjust this value as needed */
+    margin: 0 auto;
   }
