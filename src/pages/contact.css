@@ -1,0 +1,17 @@
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .contact-details{
+    flex: 1;
+    margin-right: 20px;
+  }
+
+  .feedback-form {
+    flex: 1;
+  }
