@@ -21,7 +21,7 @@ function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm('service_cf78lxo', 'template_f0ofvu2', e.target, '5-_n7CJgHvgZtjw48')
+    emailjs.sendForm('service_qd1zee6', 'template_comztml', e.target, 'ez2CfZx1WPR3l0eR6')
       .then((response) => {
 
         alert('Feedback sent successfully!');
