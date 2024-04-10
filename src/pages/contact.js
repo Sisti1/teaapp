@@ -68,6 +68,7 @@ function Contact() {
             name="name"
             value={formData.name}
             onChange={handleChange}
+            style={{ width: '100%', marginBottom: '20px' ,background:'	#F8DC88' ,border:'2px solid white'}}
             required
           /> <br />
 
@@ -78,6 +79,7 @@ function Contact() {
             name="email"
             value={formData.email}
             onChange={handleChange}
+            style={{ width: '100%', marginBottom: '20px' ,background:'#F8DC88' ,border:'2px solid white'}}
             required
           />  <br />
 
@@ -87,10 +89,11 @@ function Contact() {
             name="feedback"
             value={formData.feedback}
             onChange={handleChange}
+            style={{ width: '100%', marginBottom: '20px' ,background:'#F8DC88' ,border:'2px solid white'}}
             required
           ></textarea>  <br />
 
-          <button type="submit">Submit</button>
+          <button type="submit" style={{backgroundColor: ' rgb(181, 73, 19)', color: 'white', border: '2px solid white' }}>Submit</button>
         </form>
       </div>
     </div>
