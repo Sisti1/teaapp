@@ -1,16 +1,50 @@
 import React, { useState } from 'react';
-import emailjs from 'emailjs-com'; // Import the EmailJS library
+// import emailjs from 'emailjs-com'; // Import the EmailJS library
 import "./contact.css";
 
 function Contact() {
+  const date = new Date();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    feedback: ''
+    feedback: '',
+    time: date.getHours() + ':' + date.getMinutes() + ":" + date.getSeconds()
   });
-
+  
+  async function sendContactUs() {
+    console.log(formData);
+    try {
+      const response = await fetch('http://localhost:5600/postContactUs', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: 'cors',
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          feedback: formData.feedback,
+          time: formData.time
+        })
+      });
+  
+      console.log(response.status);
+  
+      if (response.ok) {
+        console.log("Data Submitted ");
+        alert('Feedback sent successfully!');
+      } else {
+        console.error('Failed to send feedback:', response.status);
+        alert('Failed to send feedback. Please try again later.');
+      }
+    } catch (error) {
+      console.error('Error sending feedback:', error);
+      alert('Error sending feedback. Please try again later.');
+    }
+  }
   const handleChange = (e) => {
-    console.log(e.target)
+    console.log(e.target+"THISI SEEEEEEE")
     const { name, value } = e.target;
     setFormData(prevState => ({
       ...prevState,
@@ -18,25 +52,25 @@ function Contact() {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
 
-    emailjs.sendForm('service_qd1zee6', 'template_comztml', e.target, 'ez2CfZx1WPR3l0eR6')
-      .then((response) => {
+  //   emailjs.sendForm('service_qd1zee6', 'template_comztml', e.target, 'ez2CfZx1WPR3l0eR6')
+  //     .then((response) => {
 
-        alert('Feedback sent successfully!');
-        setFormData({
-          name: '',
-          email: '',
-          feedback: ''
-        });
-      }, (err) => {
-        alert('Failed to send feedback. Please try again later.');
-        console.log('FAILED...', err);
-      });
+  //       alert('Feedback sent successfully!');
+  //       setFormData({
+  //         name: '',
+  //         email: '',
+  //         feedback: ''
+  //       });
+  //     }, (err) => {
+  //       alert('Failed to send feedback. Please try again later.');
+  //       console.log('FAILED...', err);
+  //     });
 
 
-  };
+  // };
 
   return (
 
@@ -60,7 +94,7 @@ function Contact() {
       </div>
       <div className="feedback-form">
         <h2>Send Us Your Feedback</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={sendContactUs}>
           <label htmlFor="name">Name:</label><br />
           <input
             type="text"

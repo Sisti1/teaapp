@@ -24,7 +24,7 @@ const Navbar = () => {
             </Nav>
 
             <div
-              class=" navbar-collapse justify-content-end"
+              className=" navbar-collapse justify-content-end"
               id="navbar TogglerDemo01">
               <ul className="navbar-nav ml-auto">
                <li className="nav-item"> 

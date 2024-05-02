@@ -1,5 +1,5 @@
 // Create a new component for handling page status updates
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 const PageStatus = () => {
@@ -16,6 +16,9 @@ const PageStatus = () => {
         break;
       case "/signin":
         console.log("You are at sign-up page");
+        break;
+      case "/contact":
+        console.log('You are at contact-us page');  
         break;
       default:
         console.log("You are at homepage");
