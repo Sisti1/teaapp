@@ -3,30 +3,60 @@
 	import "./sigup.css";
 	const SignUp = () => {
 	  const [formData, setFormData] = useState({
-		firstName: '',
-		lastName: '',
+		fullname:'',
 		email: '',
 		password: '',
 	  });
-	  const [errors, setErrors] = useState({});
+
+	  async function SendSignUp() {
+		console.log(formData);
+		try {
+		  const response = await fetch('http://localhost:5200/user/signup', {
+			method: 'POST',
+			headers: {
+			  "Content-Type": "application/json",
+			},
+			mode: 'cors',
+			body: JSON.stringify({
+			username:formData.fullname,
+			  email: formData.email,
+			  password: formData.password
+			})
+		  });
+		
+		console.log(response.status);
+        console.log(response);
+		if (response.ok) {
+			console.log("Data Submitted ");
+			alert('New user added!');
+		  } else {
+			console.error('Failed to send data:', response.status);
+			alert('Enter correct fields. Please try again .');
+		  }
+		} catch (error) {
+		  console.error('Error sending data:', error);
+		  alert('Enter correct fields. Please try again .');
+		}
+	  }
+	  
+	const [errors, setErrors] = useState({});
 	
 	  const handleChange = (e) => {
+		console.log(e.target+"THIS I SEEEEEEE")
 		const { name, value } = e.target;
-		setFormData({
-		  ...formData,
-		  [name]: value,
-		});
-	  };
-	
-	  const handleSubmit = (e) => {
+		setFormData(prevState => ({
+			...prevState,
+			[name]: value
+		  }));
+		};
+	 
+		const handleSubmit = (e) => {
 		e.preventDefault();
 		const errors = {};
-		if (!formData.firstName) {
-		  errors.firstName = 'First name is required';
+		if (!formData.fullname) {
+		  errors.fullname = 'fullname is required';
 		}
-		if (!formData.lastName) {
-		  errors.lastName = 'Last name is required';
-		}
+		
 		if (!formData.email) {
 
 		  errors.email = 'Email is required';
@@ -51,31 +81,20 @@
 		<div style={{ maxWidth: '450px', margin: 'auto', padding: '20px' }}>
 			 <div style={{ padding: '20px', marginBottom: '20px'}}>
 		  <h2 style={{ marginBottom: '20px' }}>Sign Up</h2>
-		  <form onSubmit={handleSubmit}>
+		  <form onSubmit={SendSignUp}>
 			<div>
 			  <input
 				type="text"
-				name="firstName"
-				placeholder="First Name"
-				value={formData.firstName}
+				name="fullname"
+				placeholder="Full Name"
+				value={formData.fullname}
 				onChange={handleChange}
 				className="input-field"
 				style={{ width: '100%', marginBottom: '20px',background:'#F8DC88' ,border:'2px solid white',}}
 			  />
-			  {errors.firstName && <p style={{ color: 'red' }}>{errors.firstName}</p>}
+			  {errors.fullname && <p style={{ color: 'red' }}>{errors.firstName}</p>}
 			</div>
-			<div>
-			  <input
-				type="text"
-				name="lastName"
-				placeholder="Last Name"
-				value={formData.lastName}
-				onChange={handleChange}
-				className="input-field"
-				style={{ width: '100%', marginBottom: '20px',background:'#F8DC88' ,border:'2px solid white' }}
-			  />
-			  {errors.lastName && <p style={{ color: 'red' }}>{errors.lastName}</p>}
-			</div>
+			
 			<div>
 			  <input
 				type="email"

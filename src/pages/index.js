@@ -27,13 +27,7 @@ const Home = () => {
 
 const AutoPlayMethods = () => {
   let sliderRef = useRef(null);
-  // const play = () => {
-  //   sliderRef.slickPlay();
-  // };
-  // const pause = () => {
-  //   sliderRef.slickPause();
-  // };
-
+  
   const settings = {
     dots: true,
     infinite: true,

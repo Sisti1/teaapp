@@ -5,14 +5,48 @@ const Login = () => {
     email: '',
     password: '',
   });
+
+  async function SendLogin() {
+		console.log(formData);
+		try {
+		  const response = await fetch('http://localhost:5200/user/login', {
+			method: 'POST',
+			headers: {
+			  "Content-Type": "application/json",
+			},
+			mode: 'cors',
+			body: JSON.stringify({
+		
+			  email: formData.email,
+			  password: formData.password
+			})
+		  });
+		
+		console.log(response.status);
+        console.log(response);
+		if (response.ok) {
+			console.log("Data Submitted ");
+			alert('login successfull!');
+		  } else {
+			console.error('Failed to send data:', response.status);
+      alert('Failed to login. Please try again .');
+		  }
+		} catch (error) {
+		  console.error('Error sending data:', error);
+      alert('Error ! Please try again.');
+		}
+	  }
+
+
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+		console.log(e.target+"THIS I SEEEEEEE")
+		const { name, value } = e.target;
+		setFormData(prevState => ({
+			...prevState,
+			[name]: value
+		  }));
   };
 
   const handleSubmit = (e) => {
@@ -39,7 +73,7 @@ const Login = () => {
     <div style={{ maxWidth: '450px', margin: 'auto', padding: '20px' ,marginTop: '45px'}}>
     <div style={{ padding: '50px', marginBottom: '45px'}}>
       <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={SendLogin}>
         <div>
           <input
             type="email"
