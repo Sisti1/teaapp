@@ -8,9 +8,7 @@ const TeaCard = ({ imageUrl, price, description }) => {
   
  
 
-
-  
-  return (
+return (
     <div className="card1">
       <div className="div1">
         <Card.Img variant="top" src={imageUrl} style={{ width: '150px', height:'150px',}}/>

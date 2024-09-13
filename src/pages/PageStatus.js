@@ -14,8 +14,14 @@ const PageStatus = () => {
       case "/cart":
         console.log("You are at cart page");
         break;
-      case "/signin":
+      case "/signup":
         console.log("You are at sign-up page");
+        break;
+      case "/login":
+        console.log("You are at login page");
+        break;
+      case "/teashop":
+        console.log("You are at teashop page");
         break;
       case "/contact":
         console.log('You are at contact-us page');  

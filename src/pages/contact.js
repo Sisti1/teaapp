@@ -15,7 +15,7 @@ function Contact() {
   async function sendContactUs() {
     console.log(formData);
     try {
-      const response = await fetch('http://localhost:5600/postContactUs', {
+      const response = await fetch('http://localhost:5200/submit/cart', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
