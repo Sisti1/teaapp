@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';  // Import useNavigate
 import "./sigup.css";
+import Cookies from 'js-cookie';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -35,8 +36,13 @@ const SignUp = () => {
 
       if (response.ok) {
         console.log("Data Submitted ");
+        const data = await response.json();  // Assume the response contains a token
+        const token = data.token;  // Get token from response
+        
+        // Store token in cookie
+        Cookies.set('token', token, { expires: 1, secure: true, sameSite: 'strict' });
         alert('New user added!');
-        navigate('/login');  // Redirect to login page after successful signup
+        navigate('/');  
       } else {
         console.error('Failed to send data:', response.status);
         setSignUpError('Enter correct fields. Please try again.');
@@ -55,31 +61,31 @@ const SignUp = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const errors = {};
-    if (!formData.fullname) {
-      errors.fullname = 'Full name is required';
-    }
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const errors = {};
+  //   if (!formData.fullname) {
+  //     errors.fullname = 'Full name is required';
+  //   }
 
-    if (!formData.email) {
-      errors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      errors.email = 'Email is invalid';
-    }
+  //   if (!formData.email) {
+  //     errors.email = 'Email is required';
+  //   } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+  //     errors.email = 'Email is invalid';
+  //   }
 
-    if (!formData.password) {
-      errors.password = 'Password is required';
-    } else if (formData.password.length < 6) {
-      errors.password = 'Password must be at least 6 characters long';
-    }
+  //   if (!formData.password) {
+  //     errors.password = 'Password is required';
+  //   } else if (formData.password.length < 6) {
+  //     errors.password = 'Password must be at least 6 characters long';
+  //   }
 
-    if (Object.keys(errors).length === 0) {
-      console.log('Form submitted:', formData);
-    } else {
-      setErrors(errors);
-    }
-  };
+  //   if (Object.keys(errors).length === 0) {
+  //     console.log('Form submitted:', formData);
+  //   } else {
+  //     setErrors(errors);
+  //   }
+  // };
 
   return (
     <div style={{ maxWidth: '450px', margin: 'auto', padding: '20px' }}>

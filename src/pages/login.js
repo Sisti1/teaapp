@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -29,9 +30,16 @@ const Login = () => {
       console.log(formData.password);
       console.log(response.status);
       console.log(response);
+
+      
       
       if (response.ok) {
         console.log("Data Submitted ");
+        const data = await response.json();  // Assume the response contains a token
+        const token = data.token;  // Get token from response
+        
+        // Store token in cookie
+        Cookies.set('token', token, { expires: 1, secure: true, sameSite: 'strict' });
         alert('Login successful!');
         navigate('/');  // Redirect to homepage after successful login
       } else {

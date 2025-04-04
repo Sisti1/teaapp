@@ -1,5 +1,41 @@
 import React, { useState } from 'react';
 import './cart.css';
+import Cookies from 'js-cookie';
+
+
+
+
+
+async function cartProduct(){
+  const token =Cookies.get('token');
+  console.log('Token:',token)
+
+
+try {
+  const response = await fetch('http://localhost:5200/Cart/CartList', {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${token}`, 
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch products');
+  }
+
+  const result = await response.json();
+  console.log(result);
+  
+  // Extract the data array from the result
+  return result.data; 
+  
+} catch (error) {
+  console.error('Error fetching products:', error);
+  return []; // Return an empty array on error to avoid issues with .map
+}
+
+}
+
 
 const Cart = () => {
   const initialItems = [

@@ -17,6 +17,8 @@ import PageStatus from "./pages/PageStatus";
 import Footer from "./pages/footer"; 
 import Login from "./pages/login";
 import Contact from "./pages/contact";
+// import ProductPage from "./pages/ProductPage";
+
 
 function App() {
   
@@ -28,7 +30,6 @@ function App() {
       <Navbar />
       <PageStatus />
       <Routes>
-        
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/cart"  element={<Cart />} />
@@ -36,7 +37,7 @@ function App() {
         <Route path="/login"  element={<Login />}/>
         <Route path="/contact" element={<Contact />}/>
         <Route path="/teashop" element={<Teashop />}/>
-        
+        {/* <Route path="/ProductPage" element={<ProductPage/>}/> */}
         </Routes>
       <Footer />
     </Router>
