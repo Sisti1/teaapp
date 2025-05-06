@@ -15,7 +15,7 @@ function Contact() {
   async function sendContactUs() {
     console.log(formData);
     try {
-      const response = await fetch('http://localhost:5200/submit/cart', {
+      const response = await fetch('http://localhost:5200/contact/submit', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
@@ -23,7 +23,7 @@ function Contact() {
         mode: 'cors',
         body: JSON.stringify({
           name: formData.name,
-          email: formData.email,
+          emailAddress: formData.email,
           feedback: formData.feedback,
           time: formData.time
         })

@@ -68,6 +68,7 @@ const Teashop = () => {
               imageUrl={tea.image_url} 
               price={tea.price} 
               description={tea.description} 
+              productId={tea._id}
             />
           </CardContainer>
         )))
