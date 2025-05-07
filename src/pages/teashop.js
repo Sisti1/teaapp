@@ -26,19 +26,29 @@ const Teashop = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const [products, cartItems] = await Promise.all([getProducts(), getCartItems()]);
-
-      const cartMap = {};
-      for (const item of cartItems) {
-        cartMap[item.product_id] = item.quantity;
+      const token = Cookies.get("token");
+  
+      const products = await getProducts();
+      let cartMap = {};
+  
+      if (token) {
+        try {
+          const cartItems = await getCartItems();
+          for (const item of cartItems) {
+            cartMap[item.product_id] = item.quantity;
+          }
+        } catch (err) {
+          console.error("Failed to fetch cart items:", err);
+        }
       }
-
+  
       setCart(cartMap);
       setTeas(products);
     };
-
+  
     fetchData();
   }, []);
+  
 
   const CardContainer = styled.div`
     width: 65%;
