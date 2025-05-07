@@ -57,19 +57,28 @@ export const placeOrder = async () => {
 
   return orderResult;
 };
-export const updateProductQty = async (productId, quantity, token) => {
+export const updateProductQty = async (productId, quantity, token, price) => {
+  const total = price * quantity;
+
   const response = await fetch("http://localhost:5200/cart/update", {
     method: "PUT",
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify([{ product: productId, quantity }]),
+    body: JSON.stringify({
+      items: [{
+        product: productId,
+        quantity,
+        total
+      }]
+    }),
   });
 
   if (!response.ok) throw new Error("Failed to update quantity");
   return await response.json();
 };
+
 
 // ✅ New: Remove product from cart
 export const removeFromCart = async (productId, token) => {

@@ -47,3 +47,13 @@
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+.empty-cart {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.empty-cart-image {
+  width: 250px;
+  height: auto;
+  margin-bottom: 20px;
+}

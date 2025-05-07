@@ -8,7 +8,7 @@ import "./teashop.css";
 import { addToCart, updateProductQty, removeFromCart } from "../services/cart_services";
 
 const TeaCard = ({ imageUrl, price, description, productId, initialQty }) => {
-  const [quantity, setQuantity] = useState(initialQty); // 👈 use initial cart quantity
+  const [quantity, setQuantity] = useState(initialQty || 0);
   const token = Cookies.get("token");
 
   const handleAddToCart = async () => {
@@ -26,13 +26,15 @@ const TeaCard = ({ imageUrl, price, description, productId, initialQty }) => {
         await removeFromCart(productId, token);
         setQuantity(0);
       } else {
-        await updateProductQty(productId, newQty, token);
+        console.log("Updating product to in tea card:", productId);
+        await updateProductQty(productId, newQty, token, price);  // pass price here
         setQuantity(newQty);
       }
     } catch (error) {
       console.error("Update quantity failed:", error);
     }
   };
+  
 
   return (
     <div className="card1">
@@ -47,7 +49,10 @@ const TeaCard = ({ imageUrl, price, description, productId, initialQty }) => {
           {quantity === 0 ? (
             <Button
               variant="primary"
-              style={{ backgroundColor: "rgb(181, 73, 19)", border: "1px solid white" }}
+              style={{
+                backgroundColor: "rgb(181, 73, 19)",
+                border: "1px solid white",
+              }}
               onClick={handleAddToCart}
             >
               Add to Cart
@@ -64,6 +69,5 @@ const TeaCard = ({ imageUrl, price, description, productId, initialQty }) => {
     </div>
   );
 };
-
 
 export default TeaCard;
