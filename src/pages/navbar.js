@@ -1,11 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Navbar as BootstrapNavbar, Nav, Button } from "react-bootstrap";
-import Cookies from "js-cookie"; // Make sure to install js-cookie
+import Cookies from "js-cookie"; // Ensure js-cookie is installed
 import "./navbar.css";
 
 const Navbar = () => {
-  // Check if the token exists in cookies to determine if the user is logged in
+  const navigate = useNavigate();
   const isAuthenticated = !!Cookies.get("token");
+
+  // Logout handler: remove token and redirect to homepage or login
+  const handleLogout = () => {
+    Cookies.remove("token");
+    navigate("/login"); // You can redirect to '/' if preferred
+  };
 
   return (
     <div>
@@ -29,7 +35,6 @@ const Navbar = () => {
 
           <div className="navbar-collapse justify-content-end" id="navbarTogglerDemo01">
             <ul className="navbar-nav ml-auto">
-              {/* Only show Sign Up and Login buttons if the user is not authenticated */}
               {!isAuthenticated ? (
                 <>
                   <li className="nav-item">
@@ -53,8 +58,17 @@ const Navbar = () => {
                     </Button>
                   </li>
                 </>
-              ) : null}
-              {/* Always show Cart button */}
+              ) : (
+                <li className="nav-item">
+                  <Button
+                    variant="dark"
+                    onClick={handleLogout}
+                    className="btn-primary-spacing"
+                  >
+                    Logout
+                  </Button>
+                </li>
+              )}
               <li className="nav-item">
                 <Button
                   variant="dark"
