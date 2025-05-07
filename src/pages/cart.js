@@ -69,14 +69,14 @@ const Cart = () => {
   
   const total = cartItems.reduce((sum, item) => sum + (item.price || 0) * item.quantity, 0);
 
-  const handleCheckout = async () => {
-    try {
-      await updateCartItems(cartItems);
-      alert('Checkout successful!');
-    } catch (err) {
-      alert(err.message);
-    }
-  };
+  // const handleCheckout = async () => {
+  //   try {
+  //     await updateCartItems(cartItems);
+  //     alert('Checkout successful!');
+  //   } catch (err) {
+  //     alert(err.message);
+  //   }
+  // };
 
   const handlePlaceOrder = async () => {
     try {
@@ -90,7 +90,7 @@ const Cart = () => {
 
   return (
     <div className="cart">
-      <h1>Your Cart</h1>
+     
       {loading ? (
         <p>Loading...</p>
       ) : cartItems.length === 0 ? (
@@ -100,8 +100,11 @@ const Cart = () => {
     alt="Empty cart"
     className="empty-cart-image"
   />
-  <p>Your cart is empty.</p>s
-  <Button variant="dark" href="/teashop">
+  <p>Your cart is empty.</p>
+  <Button style={{
+                backgroundColor: "rgb(181, 73, 19)",
+                border: "1px solid white",
+              }} href="/teashop">
     Explore Teas
   </Button>
 </div>
@@ -131,8 +134,11 @@ const Cart = () => {
           ))}
           <div className="cart-summary">
             <h2>Total: ₹ {total}</h2>
-            <Button variant="primary" onClick={handleCheckout}>Update Cart</Button>{' '}
-            <Button variant="success" onClick={handlePlaceOrder}>Place Order</Button>
+            {/* <Button variant="primary" onClick={handleCheckout}>Update Cart</Button>{' '} */}
+            <Button style={{
+                backgroundColor: "rgb(181, 73, 19)",
+                border: "1px solid white",
+              }} onClick={handlePlaceOrder}>Place Order</Button>
           </div>
         </>
       )}
