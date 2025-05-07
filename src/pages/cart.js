@@ -1,109 +1,83 @@
 import React, { useEffect, useState } from 'react';
-import Cookies from 'js-cookie';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import { getCartItems, updateCartItems, submitOrder } from '../controller/cart_controller';
 import './cart.css';
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Load cart on mount
   useEffect(() => {
-    const fetchCartItems = async () => {
-      const token = Cookies.get('token');
-
+    const loadCart = async () => {
       try {
-        const response = await fetch('http://localhost:5200/cart/', {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch cart');
-        }
-
-        const result = await response.json();
-        const enriched = result?.cart?.products?.filter(Boolean).map(p => ({
-          ...p,
-          quantity: 1,
-        })) || [];
-        setCartItems(enriched);
-      } catch (error) {
-        console.error('Error fetching cart:', error);
-        setCartItems([]);
+        const items = await getCartItems();
+        {console.log("Image URL:", items.image_url)}
+        setCartItems(items);
+      } catch (err) {
+        console.error(err);
       } finally {
         setLoading(false);
       }
     };
-
-    fetchCartItems();
+    loadCart();
   }, []);
 
+  const updateAndSyncCart = async (updatedCart) => {
+    setCartItems(updatedCart);
+    try {
+      await updateCartItems(updatedCart);
+      console.log("Cart updated in real-time.");
+    } catch (err) {
+      console.error("Failed to update cart:", err);
+    }
+  };
+
   const incrementQty = (index) => {
-    setCartItems(prev =>
-      prev.map((item, i) =>
-        i === index ? { ...item, quantity: item.quantity + 1 } : item
-      )
+    const updatedCart = cartItems.map((item, i) =>
+      i === index ? { ...item, quantity: item.quantity + 1 } : item
     );
+    updateAndSyncCart(updatedCart);
   };
 
   const decrementQty = (index) => {
-    setCartItems(prev =>
-      prev
-        .map((item, i) => {
-          if (i === index) {
-            if (item.quantity > 1) {
-              return { ...item, quantity: item.quantity - 1 };
-            } else {
-              return null; // mark for removal
-            }
-          }
-          return item;
-        })
-        .filter(Boolean)
-    );
+    const updatedCart = cartItems
+      .map((item, i) => {
+        if (i === index) {
+          if (item.quantity > 1) return { ...item, quantity: item.quantity - 1 };
+          return null; // Remove if quantity goes to 0
+        }
+        return item;
+      })
+      .filter(Boolean);
+    updateAndSyncCart(updatedCart);
   };
-  const handleCheckout = async () => {
-    try {
-      const token = Cookies.get('token');
-  
-      // Send only the product IDs as expected by backend
-      const productIds = cartItems.map(item => item._id); // Just IDs, no quantity
-  
-      console.log('Checkout Product IDs:', productIds);
-  
-      const response = await fetch('http://localhost:5200/cart/update', {
-        method: 'PUT',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ items: productIds }), // Array of ObjectIds
-      });
-  
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(`Checkout failed: ${errorData.message || 'Unknown error'}`);
-      }
-  
-      const result = await response.json();
-      console.log('Checkout successful:', result);
-      alert('Checkout successful!');
-    } catch (error) {
-      console.error('Error during checkout:', error);
-      alert('There was an error with your checkout. Please try again.');
-    }
-  };
-  
 
   const total = cartItems.reduce((sum, item) => sum + (item.price || 0) * item.quantity, 0);
+
+  const handleCheckout = async () => {
+    try {
+      await updateCartItems(cartItems);
+      alert('Checkout successful!');
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
+  const handlePlaceOrder = async () => {
+    try {
+      await submitOrder(cartItems, total);
+      alert('Order placed!');
+      setCartItems([]); // Clear cart
+    } catch (err) {
+      alert(err.message);
+    }
+  };
 
   return (
     <div className="cart">
       <h1>Your Cart</h1>
-
       {loading ? (
         <p>Loading...</p>
       ) : cartItems.length === 0 ? (
@@ -115,7 +89,7 @@ const Cart = () => {
               <div className="cart-item-image">
                 <Card.Img
                   variant="top"
-                  src={item.imageUrl}
+                  src={item.image_url}
                   onError={(e) => { e.target.src = "/fallback.jpg"; }}
                   style={{ width: '150px', height: '150px', objectFit: 'cover' }}
                 />
@@ -131,10 +105,10 @@ const Cart = () => {
               </div>
             </div>
           ))}
-
           <div className="cart-summary">
             <h2>Total: ₹ {total}</h2>
-            <Button variant="success" onClick={handleCheckout}>Checkout</Button>
+            <Button variant="primary" onClick={handleCheckout}>Update Cart</Button>{' '}
+            <Button variant="success" onClick={handlePlaceOrder}>Place Order</Button>
           </div>
         </>
       )}

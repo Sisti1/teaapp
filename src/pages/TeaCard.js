@@ -1,61 +1,69 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import "./teashop.css";
 import Cookies from "js-cookie";
+import { FaTrash, FaPlus } from "react-icons/fa";
+import "./teashop.css";
 
-const TeaCard = ({ imageUrl, price, description, productId }) => {
-  const addToCart = async () => {
-    const token = Cookies.get("token");
-    console.log("Token:", token);
-    console.log("TeaCard received productId:", productId);
+import { addToCart, updateProductQty, removeFromCart } from "../services/cart_services";
 
+const TeaCard = ({ imageUrl, price, description, productId, initialQty }) => {
+  const [quantity, setQuantity] = useState(initialQty); // 👈 use initial cart quantity
+  const token = Cookies.get("token");
+
+  const handleAddToCart = async () => {
     try {
-      const response = await fetch("http://localhost:5200/cart/add", {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ "productId": productId }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to add product to cart");
-      }
-
-      const result = await response.json();
-      console.log("Cart updated:", result);
-      // You might want to show a toast or notification here
+      await addToCart(productId, token);
+      setQuantity(1);
     } catch (error) {
-      console.error("Error adding to cart:", error);
+      console.error("Add to cart failed:", error);
+    }
+  };
+
+  const handleUpdateQuantity = async (newQty) => {
+    try {
+      if (newQty < 1) {
+        await removeFromCart(productId, token);
+        setQuantity(0);
+      } else {
+        await updateProductQty(productId, newQty, token);
+        setQuantity(newQty);
+      }
+    } catch (error) {
+      console.error("Update quantity failed:", error);
     }
   };
 
   return (
     <div className="card1">
       <div className="div1">
-        <Card.Img
-          variant="top"
-          src={imageUrl}
-          style={{ width: "150px", height: "150px" }}
-        />
+        <Card.Img variant="top" src={imageUrl} className="tea-image" />
       </div>
       <div className="div2">
         <Card.Body>
           <Card.Title>₹ {price}</Card.Title>
           <Card.Text>{description}</Card.Text>
-          <Button
-            variant="primary"
-            style={{ backgroundColor: "rgb(181, 73, 19)", border: "1px solid white" }}
-            onClick={addToCart}
-          >
-            Add to Cart
-          </Button>
+
+          {quantity === 0 ? (
+            <Button
+              variant="primary"
+              style={{ backgroundColor: "rgb(181, 73, 19)", border: "1px solid white" }}
+              onClick={handleAddToCart}
+            >
+              Add to Cart
+            </Button>
+          ) : (
+            <div className="cart-toggle">
+              <FaTrash onClick={() => handleUpdateQuantity(0)} className="icon-btn" />
+              <span className="qty-display">{quantity}</span>
+              <FaPlus onClick={() => handleUpdateQuantity(quantity + 1)} className="icon-btn" />
+            </div>
+          )}
         </Card.Body>
       </div>
     </div>
   );
 };
+
 
 export default TeaCard;

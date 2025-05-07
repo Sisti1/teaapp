@@ -1,33 +1,31 @@
-.card1{
-    display:flex;
-    padding: 40px;
-    justify-content:center;
-    border: 2px solid rgb(0, 0, 0);
-    border-radius: 10px;
-    width: 1000px;
-     height:250px;
-     margin-bottom: 10px;
-     margin-top: 10px;
-      box-shadow: 2px 1px 10px 1px rgb(105, 43, 4);
-      background-color:#f6f3f0;
-      
-      
-     
-  
-}
-.center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-  }
-
-  /* Teashop.css */
-.teashop-container {
+.cart-toggle {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  border: 2px solid #ffd700; /* Yellow border */
+  background-color: white;
+  border-radius: 40px;
+  padding: 5px 15px;
+  gap: 15px;
+  width: fit-content;
+  margin-top: 10px;
 }
 
+.icon-btn {
+  cursor: pointer;
+  color: black;
+  font-size: 18px;
+}
 
+.qty-display {
+  font-weight: bold;
+  font-size: 16px;
+  color: black;
+}
 
+/* existing .card1 and .div1 / .div2 styles retained */
+.tea-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
