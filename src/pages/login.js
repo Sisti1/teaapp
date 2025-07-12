@@ -7,7 +7,7 @@ const Login = () => {
     email: '',
     password: '',
   });
-  const [errors, setErrors] = useState({});
+  const [errors,] = useState({});
   const [loginError, setLoginError] = useState('');
   const navigate = useNavigate();  // useNavigate hook for navigation
 

@@ -24,10 +24,9 @@ const Home = () => {
     </div>
   );
 };
-
 const AutoPlayMethods = () => {
-  let sliderRef = useRef(null);
-  
+  const sliderRef = useRef(null); // ✅ Now it's defined properly
+
   const settings = {
     dots: true,
     infinite: true,
@@ -36,48 +35,18 @@ const AutoPlayMethods = () => {
     autoplay: true,
     autoplaySpeed: 2000,
     responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          initialSlide: 1,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
+      { breakpoint: 1024, settings: { slidesToShow: 1, slidesToScroll: 1, infinite: true, dots: true } },
+      { breakpoint: 768, settings: { slidesToShow: 1, slidesToScroll: 1, initialSlide: 1 } },
+      { breakpoint: 480, settings: { slidesToShow: 1, slidesToScroll: 1 } },
     ],
   };
 
   return (
     <div className="carousel-container">     
-      <Slider ref={(slider) => (sliderRef = slider)} {...settings}>
-        <div>
-        <img src={image1} alt="" className="slider-image" />
-
-        </div>
-        <div>
-        <img src={image2} alt="" className="slider-image" />
-
-        </div>
-        <div>
-        <img src={image3} alt="" className="slider-image" />
-
-        </div>       
+      <Slider ref={sliderRef} {...settings}>
+        <div><img src={image1} alt="" className="slider-image" /></div>
+        <div><img src={image2} alt="" className="slider-image" /></div>
+        <div><img src={image3} alt="" className="slider-image" /></div>       
       </Slider>      
     </div>
   );
