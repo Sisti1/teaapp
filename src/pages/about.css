@@ -1,61 +1,78 @@
 .about-us-container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  gap: 30px;
+}
+
+.about-us-image {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.about-us-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-us-content {
+  text-align: center;
+  padding: 0 10px;
+  max-width: 600px;
+}
+
+.about-us-content h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.about-us-content p:last-of-type {
+  margin-bottom: 20px; /* Adds space below last paragraph */
+}
+
+.explore-button {
+  background-color: #ec7e1d;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+
+/* Responsive for tablets and above */
+@media (min-width: 768px) {
+  .about-us-container {
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    padding: 20px;
-    height:410px;
-  }
-  
-  .about-us-image {
-    width: 350px;
-    height: 350px;
-    border-radius: 60%;
-    overflow: hidden;
-    margin-bottom: 20px;
-    margin-left: 100px;
-    
-   
+    text-align: left;
+    gap: 60px;
   }
 
-  
-  .about-us-image img {
-    width: 100%;
-    height: auto;
-   
-  }
-  
   .about-us-content {
-    text-align: center;
-  margin-left: 120px;
+    max-width: 600px;
+    padding: 0;
+  }
 
+  .about-us-content h2 {
+    font-size: 30px;
   }
-  
-  .explore-button {
-    background-color: #ec7e1d;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 20px;
+
+  .about-us-content p {
+    font-size: 18px;
   }
-  
-  /* Media query for responsiveness */
-  @media (min-width: 768px) {
-    .about-us-container {
-      flex-direction: row;
-      justify-content: center;
-    }
-  
-    .about-us-image {
-      margin-right: 20px;
-      margin-bottom: 0;
-    }
-  
-    .about-us-content {
-      text-align: left;
-      max-width: 500px; /* Adjust as needed */
-    }
-  }
-  
+  /* Force About page to take full height */
+.about-us-container {
+  min-height: calc(100vh - 140px); /* adjust if your header + footer is taller */
+}
+
+}

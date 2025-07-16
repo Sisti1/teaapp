@@ -64,13 +64,15 @@ const Teashop = () => {
       {teas.length > 0 ? (
         teas.map((tea, index) => (
           <CardContainer key={index}>
-            <TeaCard
-              imageUrl={tea.image_url}
-              price={tea.price}
-              description={tea.description}
-              productId={tea._id}
-              initialQty={cart[tea._id] || 0} // 👈 Send existing cart quantity
-            />
+           <TeaCard
+  imageUrl={tea.image_url}
+  price={tea.price}
+  description={tea.description}
+  productId={tea._id}
+  initialQty={cart[tea._id] || 0}
+  isBestSeller={index === 0 || tea.price < 200} // customize condition
+/>
+
           </CardContainer>
         ))
       ) : (

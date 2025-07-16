@@ -15,3 +15,14 @@
   .feedback-form {
     flex: 1;
   }
+  @media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 16px;
+  }
+
+  .contact-details {
+    margin-right: 0;
+  }
+}

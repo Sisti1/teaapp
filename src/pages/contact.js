@@ -85,8 +85,8 @@ function Contact() {
         </div>
         <div>
           <h3>Our Contact Information</h3>
-          <p>Email: globaltradingcompany@gmail.com</p>
-          <p>Phone: 9719562218</p>
+          <p>Email: kailashteaa@gmail.com</p>
+          <p>Phone:  +91-9719562218</p>
           <h3>Opening Hours</h3>
           <p>Tuesday/sunday 9:30-7:30</p>
           <p>Monday Closed</p>

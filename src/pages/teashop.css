@@ -5,8 +5,8 @@
   border: 2px solid rgb(0, 0, 0);
   border-radius: 10px;
   width: 1000px;
-  height: 250px;
-  margin: 10px 0;
+  height: auto;
+  margin: 10px auto;
   box-shadow: 2px 1px 10px 1px rgb(105, 43, 4);
   background-color: #f6f3f0;
 }
@@ -25,7 +25,8 @@
 .tea-image {
   width: 150px;
   height: 150px;
-  object-fit: cover;
+  object-fit: contain;
+  border-radius: 8px;
 }
 
 .cart-toggle {
@@ -51,4 +52,29 @@
   font-weight: bold;
   font-size: 16px;
   color: black;
+}
+
+/* 🌐 Mobile Responsiveness */
+@media (max-width: 768px) {
+  .card1 {
+    flex-direction: column;
+    width: 95%;
+    padding: 20px;
+  }
+
+  .div1 {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .tea-image {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin: 0 auto;
+  }
+
+  .div2 {
+    text-align: center;
+  }
 }

@@ -21,27 +21,25 @@ import Contact from "./pages/contact";
 
 
 function App() {
-  
-  
   return (
-
-  
     <Router>
       <Navbar />
-      <PageStatus />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/cart"  element={<Cart />} />
-        <Route path="/signup" element={<SignUp />}/>
-        <Route path="/login"  element={<Login />}/>
-        <Route path="/contact" element={<Contact />}/>
-        <Route path="/teashop" element={<Teashop />}/>
-        {/* <Route path="/ProductPage" element={<ProductPage/>}/> */}
+      <div className="main-content-wrapper">
+        <PageStatus />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/teashop" element={<Teashop />} />
         </Routes>
-      <Footer />
+        <Footer />
+      </div>
     </Router>
   );
 }
+
 
 export default App;

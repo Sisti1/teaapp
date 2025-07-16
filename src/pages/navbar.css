@@ -1,15 +1,18 @@
-  .custom-navbar {
-    background-color:rgb(181, 73, 19)!important;
-    padding-left: 2px;
-    padding-right: 12px;
-    height: 70px;
-  }
-  
-  .btn-spacing {
-    margin-left: 10px; 
-  }
+.custom-navbar {
+  background-color: rgb(181, 73, 19) !important;
+  padding-left: 2px;
+  padding-right: 12px;
+  /* Remove fixed height so mobile expand works correctly */
+  /* height: 70px;  <-- REMOVE THIS */
+}
 
-  
-  .btn-primary-spacing{
-    margin-left: 10px;
+.btn-spacing {
+  margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+  .navbar .btn {
+    width: 100%;
+    margin: 5px 0;
   }
+}
