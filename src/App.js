@@ -18,28 +18,29 @@ import Footer from "./pages/footer";
 import Login from "./pages/login";
 import Contact from "./pages/contact";
 // import ProductPage from "./pages/ProductPage";
-
-
 function App() {
   return (
     <Router>
-      <Navbar />
-      <div className="main-content-wrapper">
-        <PageStatus />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/teashop" element={<Teashop />} />
-        </Routes>
+      <div className="app-layout">
+        <Navbar />
+        <div className="main-content">
+          <PageStatus />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/teashop" element={<Teashop />} />
+          </Routes>
+        </div>
         <Footer />
       </div>
     </Router>
   );
 }
+
 
 
 export default App;
