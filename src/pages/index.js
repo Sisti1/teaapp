@@ -11,17 +11,9 @@ import "./index.css"
 
 const Home = () => {
   return (
-    <div
-      className='div1'
-      style={{
-        height: '30%',
-        backgroundColor: '#F8DC88',
-      }}
-    >
-      <div className='div2'>
-        <AutoPlayMethods />
-      </div>
-    </div>
+    <div className='carousel-background'>
+  <AutoPlayMethods />
+</div>
   );
 };
 const AutoPlayMethods = () => {

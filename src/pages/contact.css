@@ -1,11 +1,14 @@
 .contact-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  flex: 1;
+  flex-wrap: wrap; /* Optional for safety */
+}
+
 
   .contact-details{
     flex: 1;
@@ -25,4 +28,14 @@
   .contact-details {
     margin-right: 0;
   }
+}
+
+.contact-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.contact-container {
+  flex: 1;
 }

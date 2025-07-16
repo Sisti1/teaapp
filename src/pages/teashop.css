@@ -16,18 +16,30 @@
   align-items: center;
   justify-content: center;
   margin-right: 30px;
+  padding: 0;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  width: 180px;
+  height: 180px;
+  overflow: hidden; /* ✅ hides overflow for clean crop */
 }
+
+
+.tea-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* 🔄 fills the container and crops overflow */
+  border-radius: 6px;
+}
+
+
 
 .div2 {
   flex-grow: 1;
 }
 
-.tea-image {
-  width: 150px;
-  height: 150px;
-  object-fit: contain;
-  border-radius: 8px;
-}
+
 
 .cart-toggle {
   display: flex;
@@ -62,10 +74,15 @@
     padding: 20px;
   }
 
-  .div1 {
-    margin-right: 0;
-    margin-bottom: 15px;
-  }
+.div1 {
+  margin-right: 0;
+  margin-bottom: 15px;
+  width: 140px;
+  height: 140px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 
   .tea-image {
     width: 100px;
