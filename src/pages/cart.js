@@ -8,8 +8,8 @@ import './cart.css';
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
-  // Load cart on mount
   useEffect(() => {
     const loadCart = async () => {
       try {
@@ -63,8 +63,9 @@ const Cart = () => {
   const handlePlaceOrder = async () => {
     try {
       await submitOrder(cartItems, total);
-      alert('✅ Order placed!');
       setCartItems([]); // Clear cart
+      setShowSuccessPopup(true); // Show popup
+      setTimeout(() => setShowSuccessPopup(false), 3000); // Auto-close after 3s
     } catch (err) {
       alert(`❌ Failed to place order: ${err.message}`);
     }
@@ -120,6 +121,22 @@ const Cart = () => {
             </Button>
           </div>
         </>
+      )}
+
+      {/* ✅ Order Success Popup */}
+      {showSuccessPopup && (
+        <div className="popup-overlay">
+          <div className="popup-content">
+            <h3>🎉 Order Placed Successfully!</h3>
+            <p>Your delicious tea is brewing ☕</p>
+            <Button
+              variant="success"
+              onClick={() => setShowSuccessPopup(false)}
+            >
+              Close
+            </Button>
+          </div>
+        </div>
       )}
     </div>
   );
