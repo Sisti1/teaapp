@@ -3,92 +3,102 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
-  const [errors,] = useState({});
+  const [formData, setFormData] = useState({ email: '', password: '' });
   const [loginError, setLoginError] = useState('');
-  const navigate = useNavigate();  // useNavigate hook for navigation
+  const [showPopup, setShowPopup] = useState(false);
+  const navigate = useNavigate();
 
-  async function SendLogin(e) {
-    e.preventDefault();  // Prevent default form submission
-    console.log(formData);
+  const SendLogin = async (e) => {
+    e.preventDefault();
     try {
       const response = await fetch('http://localhost:5200/api/users/login', {
         method: 'POST',
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         mode: 'cors',
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password
-        })
+        body: JSON.stringify(formData)
       });
-      console.log(formData.email);
-      console.log(formData.password);
-      console.log(response.status);
-      console.log(response);
 
-      
-      
       if (response.ok) {
-        console.log("Data Submitted ");
-        const data = await response.json();  // Assume the response contains a token
-        const token = data.token;  // Get token from response
-        
-        // Store token in cookie
+        const data = await response.json();
+        const token = data.token;
+
         Cookies.set('token', token, { expires: 1, secure: true, sameSite: 'strict' });
-        alert('Login successful!');
-        navigate('/');  // Redirect to homepage after successful login
+
+        setShowPopup(true);
+
+        // Navigate after 5 seconds
+        setTimeout(() => {
+          setShowPopup(false);
+          navigate('/');
+        }, 3000);
       } else {
-        console.error('Failed to send data:', response.status);
         setLoginError('Failed to login. Please check your credentials.');
       }
     } catch (error) {
-      console.error('Error sending data:', error);
-      setLoginError('Error occurred during login. Please try again.');
+      console.error('Login Error:', error);
+      setLoginError('An error occurred. Please try again.');
     }
-  }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   return (
     <div style={{ maxWidth: '450px', margin: 'auto', padding: '20px', marginTop: '45px' }}>
+      {showPopup && (
+        <div style={{
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          backgroundColor: '#f4e1b1',
+          color: '#6b4226',
+          padding: '20px 30px',
+          borderRadius: '12px',
+          boxShadow: '0 8px 20px rgba(0,0,0,0.3)',
+          fontWeight: 'bold',
+          zIndex: 1000,
+          textAlign: 'center',
+          fontSize: '18px'
+        }}>
+          🍵 Tea brewing... Redirecting...
+        </div>
+      )}
+
       <div style={{ padding: '50px', marginBottom: '45px' }}>
         <h2>Login</h2>
         <form onSubmit={SendLogin}>
-          <div>
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={handleChange}
-              style={{ width: '100%', marginBottom: '20px', background: '#F8DC88', border: '2px solid white', textAlign: 'center' }}
-            />
-            {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
-          </div>
-          <div>
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={formData.password}
-              onChange={handleChange}
-              style={{ width: '100%', marginBottom: '20px', background: '#F8DC88', border: '2px solid white', textAlign: 'center' }}
-            />
-            {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
-          </div>
-          {loginError && <p style={{ color: 'red' }}>{loginError}</p>}  {/* Show error message */}
-          <button type="submit" style={{ width: '100%', padding: '10px', backgroundColor: 'rgb(181, 73, 19)', color: 'white', border: 'none' }}>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+            style={{ width: '100%', marginBottom: '20px', background: '#F8DC88', border: '2px solid white', textAlign: 'center' }}
+          />
+
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+            style={{ width: '100%', marginBottom: '20px', background: '#F8DC88', border: '2px solid white', textAlign: 'center' }}
+          />
+
+          {loginError && <p style={{ color: 'red' }}>{loginError}</p>}
+
+          <button
+            type="submit"
+            style={{
+              width: '100%',
+              padding: '10px',
+              backgroundColor: 'rgb(181, 73, 19)',
+              color: 'white',
+              border: 'none'
+            }}>
             <b>Login</b>
           </button>
         </form>
