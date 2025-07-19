@@ -1,7 +1,7 @@
 // services/cartService.js
 import Cookies from 'js-cookie';
 
-const BASE_URL = 'http://localhost:5200';
+const BASE_URL = 'http://3.109.210.27:5200';
 
 export const fetchCartItems = async () => {
   const token = Cookies.get('token');
@@ -60,7 +60,7 @@ export const placeOrder = async () => {
 export const updateProductQty = async (productId, quantity, token, price) => {
   const total = price * quantity;
 
-  const response = await fetch("http://localhost:5200/cart/update", {
+  const response = await fetch("http://3.109.210.27:5200/cart/update", {
     method: "PUT",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -82,7 +82,7 @@ export const updateProductQty = async (productId, quantity, token, price) => {
 
 // ✅ New: Remove product from cart
 export const removeFromCart = async (productId, token) => {
-  const response = await fetch("http://localhost:5200/cart/remove", {
+  const response = await fetch("http://3.109.210.27:5200/cart/remove", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -96,7 +96,7 @@ export const removeFromCart = async (productId, token) => {
 };
 // ✅ New: Add product to cart
 export const addToCart = async (productId, token) => {
-  const response = await fetch("http://localhost:5200/cart/add", {
+  const response = await fetch("http://3.109.210.27:5200/cart/add", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,

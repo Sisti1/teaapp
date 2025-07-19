@@ -11,7 +11,7 @@ const ProductDetails = () => {
     const fetchProduct = async () => {
       const token = Cookies.get('token');
       try {
-        const response = await fetch(`http://localhost:5200/product/${id}`, {
+        const response = await fetch(`http://3.109.210.27:5200/product/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }

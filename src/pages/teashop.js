@@ -7,7 +7,7 @@ import { getCartItems } from "../controller/cart_controller"; // ← Make sure t
 async function getProducts() {
   const token = Cookies.get("token");
   try {
-    const response = await fetch("http://localhost:5200/product/ProductList", {
+    const response = await fetch("http://3.109.210.27:5200/product/ProductList", {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
