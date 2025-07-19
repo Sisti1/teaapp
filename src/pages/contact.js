@@ -15,7 +15,7 @@ function Contact() {
   async function sendContactUs() {
     console.log(formData);
     try {
-      const response = await fetch('http://3.109.210.27:5200/contact/submit', {
+      const response = await fetch('https://3.109.210.27:5200/contact/submit', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",

@@ -13,14 +13,12 @@
       height: auto; 
     }
   }
-  .slider-image {
-    width: 100%;
-    height: auto;
-    max-height: 650px; /* Adjust the maximum height as needed */
-    object-fit: cover;
+.slider-image {
+  width: 100vw;
+  height: 100vh;
+  object-fit: fill; /* Strictly stretches the image — may distort but fills completely */
+}
 
-    margin: 0 auto; /* Ensures the image maintains its aspect ratio */
-  }
   /* Adjust the image size based on screen width for tablets */
 @media (max-width: 1024px) {
   .slider-img {

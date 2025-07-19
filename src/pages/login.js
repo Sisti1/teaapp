@@ -11,7 +11,7 @@ const Login = () => {
   const SendLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://3.109.210.27:5200/api/users/login', {
+      const response = await fetch('https://3.109.210.27:5200/api/users/login', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         mode: 'cors',
