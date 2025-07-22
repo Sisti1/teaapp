@@ -16,7 +16,7 @@ export const fetchCartItems = async () => {
 export const updateCart = async (items) => {
   const token = Cookies.get('token');
 
-  const response = await fetch(`${BASE_URL}/cart/update`, {
+  const response = await fetch(`${BASE_URL}cart/update`, {
     method: 'PUT',
     headers: {
       Authorization: `Bearer ${token}`,
@@ -39,7 +39,7 @@ export const placeOrder = async () => {
   const token = Cookies.get('token');
 
   // Step 1: Just trigger the order placement
-  const response = await fetch(`${BASE_URL}/api/orders/place`, {
+  const response = await fetch(`${BASE_URL}api/orders/place`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`,
