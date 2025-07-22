@@ -49,7 +49,7 @@ const SignUp = () => {
     setSignUpError('');
 
     try {
-      const response = await fetch('https://3.109.210.27:5200/api/users/register', {
+      const response = await fetch('https://teaback.onrender.com/api/users/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

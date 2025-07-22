@@ -11,7 +11,7 @@ const ProductDetails = () => {
     const fetchProduct = async () => {
       const token = Cookies.get('token');
       try {
-        const response = await fetch(`https://3.109.210.27:5200/product/${id}`, {
+        const response = await fetch(`https://teaback.onrender.com/product/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }

@@ -7,7 +7,7 @@ import { getCartItems } from "../controller/cart_controller"; // ← Make sure t
 async function getProducts() {
   const token = Cookies.get("token");
   try {
-    const response = await fetch("https://3.109.210.27:5200/product/ProductList", {
+    const response = await fetch("https://teaback.onrender.com/product/ProductList", {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
