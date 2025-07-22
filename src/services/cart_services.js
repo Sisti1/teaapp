@@ -5,7 +5,7 @@ const BASE_URL = 'https://teaback.onrender.com/';
 
 export const fetchCartItems = async () => {
   const token = Cookies.get('token');
-  const response = await fetch(`${BASE_URL}/cart/`, {
+  const response = await fetch(`${BASE_URL}cart/`, {
     method: 'GET',
     headers: { Authorization: `Bearer ${token}` },
   });
